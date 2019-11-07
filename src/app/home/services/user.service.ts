@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { questionData } from 'src/models/login';
 
 @Injectable({
@@ -34,6 +34,32 @@ export class UserService {
     return this.http.get<questionData[]>(`${this.url}/getAllQuestionsWithAnswers`);
   }
 
- 
+  addUpVote(questionID,userID){
+    let params = new HttpParams();
+    params.append("questionID", questionID);
+    params.append('userID',userID);
+    return this.http.get<any>(`${this.url}/addUpVote`,{params:params});
+  }
+
+  minusUpVote(questionID,userID){
+    let params = new HttpParams();
+    params.append("questionID", questionID);
+    params.append('userID',userID);
+    return this.http.get<any>(`${this.url}/minusUpVote`,{params:params});
+  }
+
+  addDownVote(questionID,userID){
+    let params = new HttpParams();
+    params.append("questionID", questionID);
+    params.append('userID',userID);
+    return this.http.get<any>(`${this.url}/addDownVote`,{params:params});
+  }
+
+  minusDownVote(questionID,userID){
+    let params = new HttpParams();
+    params.append("questionID", questionID);
+    params.append('userID',userID);
+    return this.http.get<any>(`${this.url}/minusDownVote`,{params:params});
+  }
 
 }
