@@ -43,12 +43,7 @@ export class LoginComponent implements OnInit {
       console.log('Invalid');
       return;
     }
-    // if (this.f.email.value === 'mahdhi@yahoo.com' && this.f.password.value === '1234' ) {
-    //     localStorage.setItem('token', '122345666');
-    //     this.router.navigate(['dashboard/info']);
-    // } else {
-    //   alert('Invalid Login');
-    // }
+   
     this.authService.login(this.f.email.value, this.f.password.value )
     .pipe(first())
     .subscribe(
