@@ -5,6 +5,7 @@ import { questionData, userData } from 'src/models/login';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
 import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -20,11 +21,13 @@ export class QuestionsComponent implements OnInit {
   userDataParsed;
   upVoteStatus:boolean;
   downVoteStatus:boolean;
+  status;
   constructor(
     public dialog: MatDialog,
     private router:Router,
     private _location: Location,
-    public userService:UserService
+    public userService:UserService,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit() {
@@ -37,7 +40,25 @@ export class QuestionsComponent implements OnInit {
       this._location.back();
     }
      this.question = JSON.parse(questionString);
-
+    this.userService.getQuestionVoteStatus(this.question.id,this.userDataParsed.object.id).toPromise()
+    .then(
+      res => {
+        this.status = res.status;
+        if(this.status=="UP"){
+          this.upVoteStatus=true;
+          this.downVoteStatus=false;
+        }else if(this.status=="DOWN"){
+          this.upVoteStatus=false;
+          this.downVoteStatus=true;
+        }
+      }
+    )
+    .catch(
+      err => {
+        console.log(err);
+        
+      }
+    )
   }
 
   openDialog(): void {
@@ -57,14 +78,43 @@ export class QuestionsComponent implements OnInit {
     this._location.back();
   }
 
-  upVoteManager(){
+  async upVoteManager(){
     if(!this.downVoteStatus){
-      this.upVoteStatus = !this.upVoteStatus;      
+      this.upVoteStatus = !this.upVoteStatus;
+      try {
+        if(this.upVoteStatus){
+          let result = await this.userService.addUpVote(this.question.id,this.userDataParsed.object.id).toPromise();
+          this.toastr.success('Upvote Added');
+        }else{
+          let result = await this.userService.minusUpVote(this.question.id,this.userDataParsed.object.id).toPromise();
+          this.toastr.success('Upvote Removed');
+        }   
+      } catch (error) {
+        console.log(error);
+        this.toastr.error('Error Upvote');
+        this.upVoteStatus = !this.upVoteStatus;
+      }
+     
     }
   }
 
-  downVoteManager(){
-    if(!this.upVoteStatus)
-    this.downVoteStatus = !this.downVoteStatus;
+  async downVoteManager(){
+    if(!this.upVoteStatus){
+      this.downVoteStatus = !this.downVoteStatus;
+      try {
+        if(this.downVoteStatus){
+          let result = await this.userService.addDownVote(this.question.id,this.userDataParsed.object.id).toPromise();
+          this.toastr.success('Downvote Added');
+        }else{
+          let result = await this.userService.minusDownVote(this.question.id,this.userDataParsed.object.id).toPromise();
+          this.toastr.success('Downvote Removed');
+        }
+      } catch (error) {
+        console.log(error);
+        this.toastr.error('Error Downvote');
+        this.downVoteStatus = !this.downVoteStatus;
+      }
+    
+    }
   }
 }
