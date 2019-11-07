@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { userData } from 'src/models/login';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,21 @@ export class AuthService {
       username:email,
       password:password
     };
-    return this.http.post<userData>(`${this.url}/auth`,obj);
+    return this.http.post<userData>(`${this.url}/auth`,obj).pipe(map(data => {
+      // login successful if there's a jwt token in the response
+      if (data && data.token) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        // localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('currentUser', JSON.stringify(data) );
+        console.log('User token set');
+      } else {
+        console.log('Token not found');
+        console.log(data);
+      }
+
+      return data;
+    }));
   }
 
 

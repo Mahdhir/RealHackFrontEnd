@@ -9,7 +9,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HomeModule } from './home/home.module';
+import { HomeRoutingModule } from './home/home-routing.module';
+import {JwtInterceptor} from '../helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -25,11 +28,15 @@ import { HttpClientModule } from '@angular/common/http';
       FormsModule,
       AuthModule,
       AuthRoutingModule,
+      HomeModule,
+      HomeRoutingModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+   ],
    bootstrap: [
-      AppComponent
+      AppComponent,
    ]
 })
 export class AppModule { }

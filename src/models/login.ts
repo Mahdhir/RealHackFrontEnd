@@ -1,4 +1,9 @@
 export class userData {
+    object:data;
+    token:string;
+}
+
+class data{
     id: number;
     name: string;
     email: string;

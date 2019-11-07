@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
     .toPromise().then(
       data => {
       console.log(data);
+      this.router.navigate(['/home']);
     })
     .catch(
       error => {
