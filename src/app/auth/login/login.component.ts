@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard/info']);
-      return ;
-    }
+    // if (this.authService.isLoggedIn()) {
+    //   this.router.navigate(['/dashboard/info']);
+    //   return ;
+    // }
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
@@ -46,28 +46,13 @@ export class LoginComponent implements OnInit {
    
     this.authService.login(this.f.email.value, this.f.password.value )
     .pipe(first())
-    .subscribe(
+    .toPromise().then(
       data => {
-        console.log(data);
-        // tslint:disable-next-line:triple-equals
-        // if (data.firstLogin == false) {
-        //   this.router.navigate(['dashboard/info']);
-        // } else {
-        //   this.router.navigate(['dashboard/changePassword']);
-        //   this.toastCtrl.warning('Please change your first time login password', 'WARNING' );
-        // }
-      },
+      console.log(data);
+    })
+    .catch(
       error => {
         console.log(error);
-        if (error.status === 400) {
-          console.log('Invalid Login');
-          this.toastCtrl.error('Invalid Login', 'Login Failed');
-        } else if (error.status === 401) {
-          this.toastCtrl.error('Please Check Your Email For Email Verification', 'Invalid Login');
-        } else {
-          console.log('Server Error');
-          this.toastCtrl.error('Server Error', 'Login Failed');
-        }
       }
     );
   }
