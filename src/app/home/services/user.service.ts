@@ -30,6 +30,10 @@ export class UserService {
     return this.http.post<questionData>(`${this.url}/createQuestion`,null);
   }
 
+  getQuestions(){
+    return this.http.get<questionData[]>(`${this.url}/getAllQuestionsWithAnswers`);
+  }
+
  
 
 }

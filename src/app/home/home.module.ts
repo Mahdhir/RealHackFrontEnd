@@ -10,6 +10,7 @@ import { QuestionsComponent } from './questions/question.component';
 import { AnswerComponent } from './modal/answer/answer.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { QuestionComponent } from './modal/question/question.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [HomeComponent, QuestionsComponent, AnswerComponent,QuestionComponent],
   imports: [
@@ -19,7 +20,8 @@ import { QuestionComponent } from './modal/question/question.component';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   entryComponents:[
     QuestionComponent,

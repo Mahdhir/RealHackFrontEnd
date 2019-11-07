@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class HomeComponent implements OnInit {
   name: string;
   animal: string;
+  questions:questionData[];
   constructor(
     public userService:UserService,
     private router:Router,
@@ -28,6 +29,21 @@ export class HomeComponent implements OnInit {
     }
     let userData:userData = JSON.parse(data);
     this.name = userData.object.name;
+    this.userService.getQuestions().toPromise()
+    .then(  
+      res => {
+        this.questions = res;
+        this.questions = this.questions.reverse();
+        console.log(res);
+        
+      }
+    )
+    .catch(
+      err => {
+        console.log(err);
+        
+      }
+    );
   }
 
   askQuestion(){
@@ -81,4 +97,6 @@ export class HomeComponent implements OnInit {
       this.animal = result;
     });
   }
+
+  
 }
