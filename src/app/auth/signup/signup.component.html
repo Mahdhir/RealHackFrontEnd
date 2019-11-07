@@ -22,6 +22,15 @@
               <label for="confirmPassword">Confirm Password</label>
               <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
             </div>
+
+            <div class="form-group text-primary" *ngIf="photos && photos.length>0">
+              <img [src]="photos[0]" class="img">
+            </div>
+            <input style="display: none" type="file" #url accept="image/*" (change)="onFileChanged($event.target.files)">
+            <div class="form-group text-center">
+              <button class="btn mt-4 signup"(click)="uploadImage(url)">Upload Image</button>
+            </div>
+
             <div class="form-group text-center">
               <button class="btn mt-4 signup" [disabled]="!signupForm.valid" (click)="registerBtnPressed()">Register</button>
             </div>

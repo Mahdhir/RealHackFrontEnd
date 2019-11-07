@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  fileToUpload: any = [];
+  photos = [];
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -60,4 +62,25 @@ export class SignupComponent implements OnInit {
     };
   }
 
+  uploadImage(url){
+    url.click();
+  }
+
+  onFileChanged(files) {
+    console.log(files);
+    for (var i = 0; i < files.length; i++) {
+      let data = files.item(i);
+      this.fileToUpload.push(files.item(i));
+      //Show image preview
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        if (Object.keys(this.photos).length !== 3) {
+          this.photos.push(event.target.result);
+          this.photos.reverse();
+        }
+      }
+      reader.readAsDataURL(this.fileToUpload[i]);
+    }
+
+  }
 }
