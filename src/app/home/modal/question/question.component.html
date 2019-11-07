@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>Hi {{data.name}}</h1>
 <div mat-dialog-content>
   <p>Enter your question</p>
-  <textarea class="form-control" [(ngModel)]="question"></textarea>
-  <p>Enter your description</p>
-  <textarea class="form-control" [(ngModel)]="description"></textarea>
+  <textarea class="form-control mb-3" [(ngModel)]="question"></textarea>
+  <p class="mb-2">Enter your description</p>
+  <textarea id="desc" class="form-control mt-0" [(ngModel)]="description"></textarea>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
