@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
   });
+    let user = localStorage.getItem('currentUser');
+    if(user){
+      this.router.navigate(['/home']);
+    }
   }
 
   onSubmit() {

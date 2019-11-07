@@ -31,6 +31,11 @@ export class SignupComponent implements OnInit {
   },
   { validator: this.matchingPasswords('password', 'confirmPassword') }
 );
+
+let user = localStorage.getItem('currentUser');
+    if(user){
+      this.router.navigate(['/home']);
+    }
   }
 
   registerBtnPressed(){
