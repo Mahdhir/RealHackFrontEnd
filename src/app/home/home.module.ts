@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './modal/answer/answer.component';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [HomeComponent, QuestionComponent, AnswerComponent],
   imports: [
@@ -16,7 +17,8 @@ import { AnswerComponent } from './modal/answer/answer.component';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ]
 })
 export class HomeModule { }
