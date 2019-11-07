@@ -4,6 +4,9 @@ import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+
 
 
 @NgModule({
@@ -11,7 +14,9 @@ import { AuthRoutingModule } from './auth-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ShowHidePasswordModule,
+    PasswordStrengthMeterModule
   ]
 })
 export class AuthModule { }
