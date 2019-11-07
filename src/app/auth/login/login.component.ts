@@ -62,4 +62,8 @@ export class LoginComponent implements OnInit {
   butClick() {
     this.showPass ? this.showPwd = 'octicon octicon-eye-closed' : this.showPwd = 'octicon octicon-eye';
   }
+
+  navigateToSignup(){
+    this.router.navigate(['/signup'])
+  }
 }

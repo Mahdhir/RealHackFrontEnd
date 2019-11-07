@@ -16,7 +16,7 @@
             Sign In Here!
           </h2>
           <div class="register-form">
-            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form class="form-signin" [formGroup]="loginForm">
               <div class="fields-grid">
                 <div class="styled-inputx">
                   <div class="styled-input">
@@ -36,9 +36,9 @@
                 <br />
                 <br />
               </div>
-              <input type="button" class="btn btn-primary btn-lg btn-block" value="Sign In" [disabled]="!loginForm.valid">
+              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="onSubmit()" [disabled]="!loginForm.valid">Sign In</button>
             
-              <button type="button" id="signbtn" class="btn btn-outline-primary btn-lg btn-block mt-3">Sign Up</button>
+              <button type="button" id="signbtn" class="btn btn-outline-primary btn-lg btn-block mt-3" (click)="navigateToSignup()">Sign Up</button>
             </form>
           </div>
         </div>
