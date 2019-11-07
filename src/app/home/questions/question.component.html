@@ -16,8 +16,8 @@
         {{question.description}}
       </p>
       <div>
-      <button mat-mini-fab class="mr-2 ml-5" (click)="upVoteManager()"><mat-icon color="primary">thumb_up</mat-icon></button>
-      <button mat-mini-fab><mat-icon color="primary" (click)="downVoteManager()">thumb_down</mat-icon></button>
+      <button mat-mini-fab class="mr-2 ml-5" (click)="upVoteManager()" [ngClass]="{clicked: upVoteStatus}"><mat-icon color="primary">thumb_up</mat-icon></button>
+      <button mat-mini-fab><mat-icon color="primary" (click)="downVoteManager()" [ngClass]="{clicked: downVoteStatus}">thumb_down</mat-icon></button>
     </div>
     </mat-card-content>
     <mat-card-actions class="text-center">
