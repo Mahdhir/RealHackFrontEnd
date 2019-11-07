@@ -47,9 +47,11 @@ export class SignupComponent implements OnInit {
       let data = await this.authService.signUp(this.signupForm.value.name, email, this.signupForm.value.password).toPromise();
       console.log(data);
       if (this.fileToUpload.length > 0) {
-        const base64Image = await this.toBase64(this.fileToUpload[0]);
+        let base64Image:any = await this.toBase64(this.fileToUpload[0]);
+        base64Image = base64Image.slice(23);
+        // console.log(base64Image);
         
-        let obj = {
+        let obj = { 
           file:base64Image,
           fileName:name+".jpeg"
         };

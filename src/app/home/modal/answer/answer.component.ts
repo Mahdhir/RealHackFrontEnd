@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
 export interface DialogData {
   animal: string;
   name: string;
@@ -14,12 +15,18 @@ export class AnswerComponent implements OnInit {
 
   constructor(
      public dialogRef: MatDialogRef<AnswerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {} 
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private userService:UserService) {} 
 
   ngOnInit() {
   }
+
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addAnswer(){
+    this.userService.addAnswer().toPromise();
   }
 
 }

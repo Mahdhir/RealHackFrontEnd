@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-question',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userService:UserService
+  ) { }
 
   ngOnInit() {
+  }
+
+  async addQuestion(){
+    let obj = {
+
+    };
+    await this.userService.createQuestion(obj).toPromise();
   }
 
 }
