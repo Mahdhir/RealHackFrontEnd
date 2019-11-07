@@ -26,6 +26,7 @@ export class QuestionsComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AnswerComponent, {
       width: '50vw',
+      height: '50vh',
       data: {name: this.name, animal: this.animal}
     });
 
