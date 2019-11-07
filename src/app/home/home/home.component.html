@@ -24,7 +24,7 @@
     <div class="text-center">
     <button mat-raised-button class="mb-1 mt-1"(click)="openDialog()">New Question&nbsp;<mat-icon>add</mat-icon></button>
     </div>
-  <mat-card class="example-card">
+  <mat-card class="example-card" (click)="openQuestion()">
       <mat-card-header class="float-left">
           <img mat-card-avatar src="{{userService.envUrl}}api/v1/authentication/images/get/{{name}}.jpeg/">
         <mat-card-title class="text-primary">Mahdhi Rezvi</mat-card-title>

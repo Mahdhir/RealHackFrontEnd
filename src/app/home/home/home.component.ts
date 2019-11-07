@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   openQuestion(){
-    this.router.navigate(['home/question/:id']);
+    this.router.navigate(['home/question/2']);
   }
 
   openProfile(){
