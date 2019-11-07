@@ -55,12 +55,12 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         // tslint:disable-next-line:triple-equals
-        if (data.firstLogin == false) {
-          this.router.navigate(['dashboard/info']);
-        } else {
-          this.router.navigate(['dashboard/changePassword']);
-          this.toastCtrl.warning('Please change your first time login password', 'WARNING' );
-        }
+        // if (data.firstLogin == false) {
+        //   this.router.navigate(['dashboard/info']);
+        // } else {
+        //   this.router.navigate(['dashboard/changePassword']);
+        //   this.toastCtrl.warning('Please change your first time login password', 'WARNING' );
+        // }
       },
       error => {
         console.log(error);
