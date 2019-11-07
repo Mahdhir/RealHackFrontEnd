@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit {
+export class QuestionsComponent implements OnInit {
   name: string;
   animal: string;
 
