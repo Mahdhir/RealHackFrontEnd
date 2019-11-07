@@ -14,6 +14,11 @@ import { HomeModule } from './home/home.module';
 import { HomeRoutingModule } from './home/home-routing.module';
 import {JwtInterceptor} from '../helpers/jwt.interceptor';
 
+import { MatCardModule
+
+
+} from '@angular/material';
+ 
 
 @NgModule({
    declarations: [
@@ -30,7 +35,8 @@ import {JwtInterceptor} from '../helpers/jwt.interceptor';
       AuthRoutingModule,
       HomeModule,
       HomeRoutingModule,
-      HttpClientModule
+      HttpClientModule,
+      MatCardModule
    ],
    providers: [
       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
