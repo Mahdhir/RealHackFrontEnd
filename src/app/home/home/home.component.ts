@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
 
   logout(){
     this.userService.logout();
+    this.router.navigate(['login'],{replaceUrl: true});
   }
   
 }
