@@ -43,24 +43,19 @@ export class LoginComponent implements OnInit {
       console.log('Invalid');
       return;
     }
-    // if (this.f.email.value === 'mahdhi@yahoo.com' && this.f.password.value === '1234' ) {
-    //     localStorage.setItem('token', '122345666');
-    //     this.router.navigate(['dashboard/info']);
-    // } else {
-    //   alert('Invalid Login');
-    // }
+   
     this.authService.login(this.f.email.value, this.f.password.value )
     .pipe(first())
     .subscribe(
       data => {
         console.log(data);
         // tslint:disable-next-line:triple-equals
-        if (data.firstLogin == false) {
-          this.router.navigate(['dashboard/info']);
-        } else {
-          this.router.navigate(['dashboard/changePassword']);
-          this.toastCtrl.warning('Please change your first time login password', 'WARNING' );
-        }
+        // if (data.firstLogin == false) {
+        //   this.router.navigate(['dashboard/info']);
+        // } else {
+        //   this.router.navigate(['dashboard/changePassword']);
+        //   this.toastCtrl.warning('Please change your first time login password', 'WARNING' );
+        // }
       },
       error => {
         console.log(error);
