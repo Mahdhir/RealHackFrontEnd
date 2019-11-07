@@ -12,7 +12,11 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
 
-  createQuestion(){
-    return this.http.post<questionData>(`${this.url}/createQuestion`,null );
+  createQuestion(obj){
+    return this.http.post<questionData>(`${this.url}/createQuestion`,obj);
+  }
+
+  getUserData(){
+    return localStorage.getItem('currentUser');
   }
 }
