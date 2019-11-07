@@ -22,13 +22,15 @@
               <label for="confirmPassword">Confirm Password</label>
               <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
             </div>
-
-            <div class="form-group text-primary" *ngIf="photos && photos.length>0">
+            <div class="form-group text-primary text-center" *ngIf="!(photos && photos.length>0)">
+                <img src="https://tricityescaperooms.com/wp-content/uploads/2018/01/person-placeholder-male-5.jpg" class="img">
+              </div>
+            <div class="form-group text-primary text-center" *ngIf="photos && photos.length>0">
               <img [src]="photos[0]" class="img">
             </div>
             <input style="display: none" type="file" #url accept="image/*" (change)="onFileChanged($event.target.files)">
             <div class="form-group text-center">
-              <button class="btn mt-4 signup"(click)="uploadImage(url)">Upload Image</button>
+              <button class="btn btn-outline-primary mt-2" id="imgbtn" (click)="uploadImage(url)">Upload Image</button>
             </div>
 
             <div class="form-group text-center">
