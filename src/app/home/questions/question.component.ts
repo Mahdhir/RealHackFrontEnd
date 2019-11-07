@@ -18,6 +18,8 @@ export class QuestionsComponent implements OnInit {
   animal: string;
   question:questionData;
   userDataParsed;
+  upVoteStatus:boolean;
+  downVoteStatus:boolean;
   constructor(
     public dialog: MatDialog,
     private router:Router,
@@ -53,5 +55,16 @@ export class QuestionsComponent implements OnInit {
 
   goBack(){
     this._location.back();
+  }
+
+  upVoteManager(){
+    if(!this.downVoteStatus){
+      this.upVoteStatus = !this.upVoteStatus;      
+    }
+  }
+
+  downVoteManager(){
+    if(!this.upVoteStatus)
+    this.downVoteStatus = !this.downVoteStatus;
   }
 }
