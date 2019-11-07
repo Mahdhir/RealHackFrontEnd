@@ -6,8 +6,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { QuestionComponent } from './question/question.component';
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, QuestionComponent],
   imports: [
     CommonModule,
     MatCardModule,
