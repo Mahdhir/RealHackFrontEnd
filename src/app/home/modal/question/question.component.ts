@@ -1,6 +1,6 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface DialogData {
   animal: string;
@@ -15,7 +15,7 @@ export interface DialogData {
 export class QuestionComponent implements OnInit {
 
   constructor(
-    private userService:UserService,
+    private userService: UserService,
     public dialogRef: MatDialogRef<QuestionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
@@ -23,11 +23,21 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
   }
 
-  async addQuestion(){
+  async addQuestion() {
+    let data: any = this.userService.getUserData();
+    data = JSON.parse(data);
     let obj = {
-
+      title: '',
+      description: '',
+      userDTO: data.object
     };
-    await this.userService.createQuestion(obj).toPromise();
+    try {
+      await this.userService.createQuestion(obj).toPromise();
+
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
   onNoClick(): void {
