@@ -26,8 +26,8 @@ export class UserService {
     localStorage.removeItem('token');
   }
 
-  addAnswer(){
-    return this.http.post<questionData>(`${this.url}/createQuestion`,null);
+  addAnswer(obj){
+    return this.http.post<questionData>(`${this.url}/provideAnswer`,obj);
   }
 
   getQuestions(){

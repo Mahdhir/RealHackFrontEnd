@@ -70,8 +70,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  openQuestion(){
-    this.router.navigate(['home/question/2']);
+  openQuestion(question){
+    localStorage.setItem('question',JSON.stringify(question));
+    this.router.navigate(['home/question/1']);
   }
 
   openProfile(){

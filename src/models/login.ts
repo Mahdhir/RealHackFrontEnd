@@ -20,6 +20,8 @@ export class questionData {
     question_status: Question_Status;
     up_votes: number;
     down_votes: number;
+    userDTO:any;
+    answers:any;
 }
 
 enum Question_Status {

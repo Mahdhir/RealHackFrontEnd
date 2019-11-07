@@ -23,10 +23,10 @@
     <div class="text-center">
     <button mat-raised-button class="mb-1 mt-1"(click)="openDialog()">New Question&nbsp;<mat-icon>add</mat-icon></button>
     </div>
-  <mat-card class="example-card" (click)="openQuestion()" *ngFor="let question of questions">
+  <mat-card class="example-card" (click)="openQuestion(question)" *ngFor="let question of questions">
       <mat-card-header class="float-left">
-          <img mat-card-avatar src="{{userService.envUrl}}api/v1/authentication/images/get/{{name}}.jpeg/">
-        <mat-card-title class="text-primary">Mahdhi Rezvi</mat-card-title>
+          <img mat-card-avatar src="{{userService.envUrl}}api/v1/authentication/images/get/{{question.userDTO.name}}.jpeg/" onerror="this.src='https://tricityescaperooms.com/wp-content/uploads/2018/01/person-placeholder-male-5.jpg'">
+        <mat-card-title class="text-primary">{{question.userDTO.name}}</mat-card-title>
         <mat-card-subtitle>{{question.date}}</mat-card-subtitle>
       </mat-card-header>
       <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
