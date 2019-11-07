@@ -19,6 +19,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatToolbarModule,
     MatMenuModule,
     MatDialogModule
+  ],
+  entryComponents:[
+    QuestionComponent,
+    AnswerComponent
   ]
 })
 export class HomeModule { }

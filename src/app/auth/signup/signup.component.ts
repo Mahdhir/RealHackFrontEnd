@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
       console.log(data);
       if (this.fileToUpload.length > 0) {
         const base64Image = await this.toBase64(this.fileToUpload[0]);
+        
         let obj = {
           file:base64Image,
           fileName:name+".jpeg"
