@@ -7,6 +7,7 @@ import { questionData } from 'src/models/login';
   providedIn: 'root'
 })
 export class UserService {
+  envUrl = environment.url;
   url = `${environment.url}api/v1/user`;
 
   constructor(private http:HttpClient) { }
@@ -28,5 +29,7 @@ export class UserService {
   addAnswer(){
     return this.http.post<questionData>(`${this.url}/createQuestion`,null);
   }
+
+ 
 
 }

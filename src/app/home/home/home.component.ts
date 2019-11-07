@@ -15,13 +15,19 @@ export class HomeComponent implements OnInit {
   name: string;
   animal: string;
   constructor(
-    private userService:UserService,
+    public userService:UserService,
     private router:Router,
     private toastr:ToastrService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
+    let data = localStorage.getItem('currentUser');
+    if(!data){
+      this.router.navigate(['login'],{replaceUrl:true});
+    }
+    let userData:userData = JSON.parse(data);
+    this.name = userData.object.name;
   }
 
   askQuestion(){
