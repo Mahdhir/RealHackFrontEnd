@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnswerComponent } from '../modal/answer/answer.component';
 import { MatDialog } from '@angular/material/dialog';
+import { questionData, userData } from 'src/models/login';
+
 
 @Component({
   selector: 'app-question',
@@ -16,7 +18,11 @@ export class QuestionsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let data = localStorage.getItem('currentUser');
+    let userData:userData = JSON.parse(data);
+    this.name = userData.object.name;
   }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(AnswerComponent, {
       width: '50vw',
