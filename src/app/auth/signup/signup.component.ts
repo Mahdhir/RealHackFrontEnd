@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder, FormGroup, Validators,ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  fileToUpload: any = [];
+  fileToUpload: any[] = [];
   photos = [];
   constructor(
     private formBuilder: FormBuilder,
@@ -28,31 +28,49 @@ export class SignupComponent implements OnInit {
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       confirmPassword: ['', Validators.required]
 
-  },
-  { validator: this.matchingPasswords('password', 'confirmPassword') }
-);
+    },
+      { validator: this.matchingPasswords('password', 'confirmPassword') }
+    );
 
-let user = localStorage.getItem('currentUser');
-    if(user){
+    let user = localStorage.getItem('currentUser');
+    if (user) {
       this.router.navigate(['/home']);
     }
   }
 
-  registerBtnPressed(){
+  async registerBtnPressed() {
     console.log(this.signupForm.value);
-    this.authService.signUp(this.signupForm.value.name,this.signupForm.value.email,this.signupForm.value.password).toPromise()
-    .then(
-      data => {
-        console.log(data);
+    let email = this.signupForm.value.email.trim();
+    // console.log(this.fileToUpload[0]);
+    let name = this.signupForm.value.name.trim();
+    try {
+      let data = await this.authService.signUp(this.signupForm.value.name, email, this.signupForm.value.password).toPromise();
+      console.log(data);
+      if (this.fileToUpload.length > 0) {
+        const base64Image = await this.toBase64(this.fileToUpload[0]);
+        let obj = {
+          file:base64Image,
+          fileName:name+".jpeg"
+        };
+        await this.authService.imageUpload(obj).toPromise();
+        this.router.navigate(['login'],{replaceUrl:true});
       }
-    )
-    .catch(
-      err => {
-        console.log(err);
-        
+
+    } catch (error) {
+      console.log(error);
+      if (error.status == 500) {
+        this.toastCtrl.error('Email already taken');
       }
-    );
+    }
+
   }
+
+  toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
 
   matchingPasswords(passwordKey: string, confirmPasswordKey: string): ValidationErrors | null {
     return (group: FormGroup): { [key: string]: any } => {
@@ -67,7 +85,7 @@ let user = localStorage.getItem('currentUser');
     };
   }
 
-  uploadImage(url){
+  uploadImage(url) {
     url.click();
   }
 

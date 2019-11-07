@@ -48,6 +48,8 @@ export class AuthService {
     }));
   }
 
-
+  imageUpload(uploadData){
+    return this.http.post(`${this.url}/images/upload`,uploadData);
+  }
   
 }
