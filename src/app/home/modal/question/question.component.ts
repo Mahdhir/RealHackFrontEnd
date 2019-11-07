@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-question',
@@ -9,7 +15,9 @@ import { UserService } from '../../services/user.service';
 export class QuestionComponent implements OnInit {
 
   constructor(
-    private userService:UserService
+    private userService:UserService,
+    public dialogRef: MatDialogRef<QuestionComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
 
   ngOnInit() {
@@ -22,4 +30,7 @@ export class QuestionComponent implements OnInit {
     await this.userService.createQuestion(obj).toPromise();
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

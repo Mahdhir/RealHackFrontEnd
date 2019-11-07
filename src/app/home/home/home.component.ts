@@ -3,6 +3,8 @@ import { UserService } from '../services/user.service';
 import { questionData, userData } from 'src/models/login';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { QuestionComponent } from '../modal/question/question.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +12,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+  name: string;
+  animal: string;
   constructor(
     private userService:UserService,
     private router:Router,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -60,5 +64,15 @@ export class HomeComponent implements OnInit {
     this.userService.logout();
     this.router.navigate(['login'],{replaceUrl: true});
   }
-  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(QuestionComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
 }
