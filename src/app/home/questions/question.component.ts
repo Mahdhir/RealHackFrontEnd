@@ -19,7 +19,7 @@ export class QuestionsComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AnswerComponent, {
-      width: '250px',
+      width: '50vw',
       data: {name: this.name, animal: this.animal}
     });
 
