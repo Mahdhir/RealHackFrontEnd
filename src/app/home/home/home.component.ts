@@ -55,5 +55,9 @@ export class HomeComponent implements OnInit {
   openAskedQuestions(){
     this.router.navigate(['home/questions']);
   }
+
+  logout(){
+    this.userService.logout();
+  }
   
 }

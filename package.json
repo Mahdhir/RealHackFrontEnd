@@ -26,9 +26,12 @@
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "angular-password-strength-meter": "0.0.4",
     "core-js": "^2.5.4",
+    "net": "^1.0.2",
     "ngx-show-hide-password": "^2.1.0",
     "ngx-toastr": "^10.1.0",
     "rxjs": "~6.3.3",
+    "sockjs-client": "^1.4.0",
+    "stompjs": "^2.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26",
     "zxcvbn": "^4.4.2"
