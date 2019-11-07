@@ -1,0 +1,21 @@
+// img{
+//     width:4vw;
+//     border-radius: 16px;
+// }
+.example-card {
+  //  max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  i{
+      font-size: 18px;
+      color:rgb(41, 136, 224);
+  }
+  P{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
