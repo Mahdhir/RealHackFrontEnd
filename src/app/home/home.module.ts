@@ -11,6 +11,7 @@ import { AnswerComponent } from './modal/answer/answer.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { QuestionComponent } from './modal/question/question.component';
 import { FormsModule } from '@angular/forms';
+import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
 @NgModule({
   declarations: [HomeComponent, QuestionsComponent, AnswerComponent,QuestionComponent],
   imports: [
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatMenuModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatCheckboxModule,
   ],
   entryComponents:[
     QuestionComponent,

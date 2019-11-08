@@ -35,11 +35,16 @@
       <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
       <mat-card-content class="mb-0">
         <h4>{{question.title}}</h4>
-        <p>
+        <div class="row">
+        <p class="col-10">
           {{question.description}}
         </p>
+        <section class="example-section"> 
+            <mat-checkbox class="example-margin" >Checked</mat-checkbox>
+          </section>
+        </div>
       </mat-card-content>
-      <mat-card-footer>
+      <mat-card-footer class="ml-5">
           <i class="fas fa-thumbs-up mr-1 ml-1 mt-2" ></i>
           <label class="mr-3">{{question.up_votes}}</label>
           <i class="fas fa-thumbs-down ml-3 mr-1"></i>
