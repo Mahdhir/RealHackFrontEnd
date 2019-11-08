@@ -39,7 +39,8 @@
         <p class="col-10">
           {{question.description}}
         </p>
-        <mat-icon id="tick">check_circle_outline</mat-icon>
+        <mat-icon id="tick" *ngIf="question && question.answers.length>0">check_circle_outline</mat-icon>
+        <p id="tick" *ngIf="question && question.answers.length>0">&nbsp;&nbsp;Answered</p>
         </div>
       </mat-card-content>
       <mat-card-footer class="ml-5">

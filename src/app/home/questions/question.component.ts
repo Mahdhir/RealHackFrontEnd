@@ -43,6 +43,7 @@ export class QuestionsComponent implements OnInit {
     this.userService.getQuestionVoteStatus(this.question.id, this.userDataParsed.object.id).toPromise()
       .then(
         res => {
+          console.log(res);
           this.status = res.status;
           if (this.status == "UP") {
             this.upVoteStatus = true;
