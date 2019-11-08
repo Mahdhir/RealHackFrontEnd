@@ -38,28 +38,35 @@ export class UserService {
     let params = new HttpParams();
     params.append("questionID", questionID);
     params.append('userID',userID);
-    return this.http.get<any>(`${this.url}/addUpVote`,{params:params});
+    return this.http.get<any>(`${this.url}/addUpVote?questionID=${questionID}&userID=${userID}`);
   }
 
   minusUpVote(questionID,userID){
     let params = new HttpParams();
     params.append("questionID", questionID);
     params.append('userID',userID);
-    return this.http.get<any>(`${this.url}/minusUpVote`,{params:params});
+    return this.http.get<any>(`${this.url}/minusUpVote?questionID=${questionID}&userID=${userID}`);
   }
 
   addDownVote(questionID,userID){
     let params = new HttpParams();
     params.append("questionID", questionID);
     params.append('userID',userID);
-    return this.http.get<any>(`${this.url}/addDownVote`,{params:params});
+    return this.http.get<any>(`${this.url}/addDownVote?questionID=${questionID}&userID=${userID}`);
   }
 
   minusDownVote(questionID,userID){
     let params = new HttpParams();
     params.append("questionID", questionID);
     params.append('userID',userID);
-    return this.http.get<any>(`${this.url}/minusDownVote`,{params:params});
+    return this.http.get<any>(`${this.url}/minusDownVote?questionID=${questionID}&userID=${userID}`);
+  }
+
+  getQuestionVoteStatus(questionID,userID){
+    let params = new HttpParams();
+    params.append("questionID", questionID);
+    params.append('userID',userID);
+    return this.http.get<any>(`${this.url}/getUserQuestionStatus?questionID=${questionID}&userID=${userID}`);
   }
 
 }
