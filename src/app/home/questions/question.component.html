@@ -19,7 +19,9 @@
       </p>
       <div>
       <button mat-mini-fab class="mr-2 ml-5" (click)="upVoteManager()" [ngClass]="{clicked: upVoteStatus}" [disabled]="downVoteStatus"><mat-icon color="primary">thumb_up</mat-icon></button>
+      <label>{{question.up_votes}}</label>
       <button mat-mini-fab [ngClass]="{clicked: downVoteStatus}" (click)="downVoteManager()" [disabled]="upVoteStatus"><mat-icon color="primary" >thumb_down</mat-icon></button>
+      <label>{{question.down_votes}}</label>
     </div>
     </mat-card-content>
     <mat-card-actions class="text-center">
@@ -38,5 +40,6 @@
         </p>
         <br>
       </mat-card-content>
-    </mat-card>
+  </mat-card>
+  <h3 *ngIf="question.answers && question.answers.length==0">No Answers Yet</h3>
   
