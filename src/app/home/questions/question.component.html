@@ -14,15 +14,18 @@
       <mat-card-subtitle>{{question.date}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>
+      <div class="row">
+      <p class="col-10">
         {{question.description}}
       </p>
       <div>
-      <button mat-mini-fab class="mr-2 ml-5" (click)="upVoteManager()" [ngClass]="{clicked: upVoteStatus}" [disabled]="downVoteStatus"><mat-icon color="primary">thumb_up</mat-icon></button>
-      <label>{{question.up_votes}}</label>
-      <button mat-mini-fab [ngClass]="{clicked: downVoteStatus}" (click)="downVoteManager()" [disabled]="upVoteStatus"><mat-icon color="primary" >thumb_down</mat-icon></button>
-      <label>{{question.down_votes}}</label>
+      <button mat-mini-fab class="mr-1 ml-2" (click)="upVoteManager()" [ngClass]="{clicked: upVoteStatus}" [disabled]="downVoteStatus"><mat-icon color="primary">thumb_up</mat-icon></button>
+      <label id="count">{{question.up_votes}}</label>
+      <button mat-mini-fab class="mr-1 ml-4" [ngClass]="{clicked: downVoteStatus}" (click)="downVoteManager()" [disabled]="upVoteStatus"><mat-icon color="primary" >thumb_down</mat-icon></button>
+      <label  id="count">{{question.down_votes}}</label>
     </div>
+  </div>
+    
     </mat-card-content>
     <mat-card-actions class="text-center">
       <button class="ml-1 pl-3 pr-4" mat-stroked-button (click)="openDialog()"><mat-icon>emoji_objects</mat-icon>Answer</button>
@@ -41,5 +44,5 @@
         <br>
       </mat-card-content>
   </mat-card>
-  <h3 *ngIf="question.answers && question.answers.length==0">No Answers Yet</h3>
+  <h4 class="ml-2 mt-2" *ngIf="question.answers && question.answers.length==0">No Answers Yet</h4>
   
